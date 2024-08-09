@@ -1,15 +1,10 @@
-import { Box, Grid, Typography, Step, Stepper, StepLabel} from "@mui/material";
-import styles from "./styles";
+import { Box } from '@mui/material';
 
-const steps = ['Welcome', 'Profile Setup', 'System Configurations', 'Final Steps'];
+import styles from './styles';
 
 const OnboardLayout = (props) => {
-  const { children } = props
-  return (
-    <Box {...styles.mainContainerProps}>
-      {children}
-    </Box>
-  )
+  const { children } = props;
+  return <Box {...styles.mainContainerProps}>{children}</Box>;
 };
 
 export default OnboardLayout;

@@ -3,6 +3,8 @@ const styles = {
     container: true,
     item: true,
     display: 'flex',
+    paddingTop: '6rem',
+    width: '100%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -34,7 +36,7 @@ const styles = {
       fontWeight: 'bold',
       fontSize: '15px',
     }),
-  }
-}
+  },
+};
 
-export default styles
+export default styles;

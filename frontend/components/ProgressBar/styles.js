@@ -1,8 +1,7 @@
 const styles = {
   mainContainerProps: {
     display: 'flex',
-    paddingTop: '1rem',
-    marginTop: '5rem',
+    width: 'auto',
     borderRadius: '20px',
     border: '1.5px solid',
     borderColor: 'primary.main',
@@ -10,10 +9,38 @@ const styles = {
       background: '#181A20',
     },
   },
-  stepperProps: {
-    activeStep: 0,
-    alternativeLabel: true,
-  }
+  progressCheckerBoxProps: {
+    display: 'flex',
+    width: 'auto',
+  },
+  backdropProps: {
+    sx: {
+      backdropFilter: 'blur(5px)',
+    },
+  },
+  iconButtonProps: {
+    sx: {
+      marginLeft: '1rem',
+    },
+  },
+  menuProps: {
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'right',
+    },
+    transformOrigin: {
+      vertical: 'top',
+      horizontal: 'right',
+    },
+    marginThreshold: 0,
+    slotProps: {
+      paper: {
+        sx: {
+          width: '525px',
+        },
+      },
+    },
+  },
 };
 
 export default styles;
