@@ -1,8 +1,17 @@
-// File to create a firebase functions for the onboardong workflow
+// File containing firebase functions for onboardong workflow
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
+/**
+ * This function saves the step 1 of the onboarding process by adding the field of
+ * onboardingStepCompleted to the firestore collection of Users.
+ *
+ * @return {functions.Response} - The response for success and status of 200 when
+ * firestore is updated.
+ * @throws {HttpsError} Throws an error resposne with status 500 and error message
+ * if firestore cannot be updated.
+ */
 exports.saveStep1 = functions.https.onRequest(async (req, res) => {
   const { uid } = req.body;
 
@@ -20,6 +29,14 @@ exports.saveStep1 = functions.https.onRequest(async (req, res) => {
   }
 });
 
+/**
+ * This function saves the step 2 of the onboarding process by adding the given fields
+ * to the firestore collection of Users.
+ *
+ * @return {functions.Response} - The response for success with status code 200 when firestore is updated.
+ * @throws {HttpsError} Throws an error resposne with status 500 and error message
+ * if firestore cannot be updated.
+ */
 exports.saveStep2 = functions.https.onRequest(async (req, res) => {
   const {
     uid,
@@ -53,6 +70,14 @@ exports.saveStep2 = functions.https.onRequest(async (req, res) => {
   }
 });
 
+/**
+ * This function saves the step 3 of the onboarding process by adding the given fields
+ * to the firestore collection of Users.
+ *
+ * @return {functions.Response} - The response for success with status code 200 when firestore is updated.
+ * @throws {HttpsError} Throws an error resposne with status 500 and error message
+ * if firestore cannot be updated.
+ */
 exports.saveStep3 = functions.https.onRequest(async (req, res) => {
   const { uid, emailNotification, pushNotification, reminder, theme } =
     req.body;
@@ -75,6 +100,14 @@ exports.saveStep3 = functions.https.onRequest(async (req, res) => {
   }
 });
 
+/**
+ * This function saves the step 4 of the onboarding process by adding the given fields
+ * to the firestore collection of Users.
+ *
+ * @return {functions.Response} - The response for success with status code 200 when firestore is updated.
+ * @throws {HttpsError} Throws an error resposne with status 500 and error message
+ * if firestore cannot be updated.
+ */
 exports.saveStep4 = functions.https.onRequest(async (req, res) => {
   const { uid } = req.body;
 
@@ -92,6 +125,15 @@ exports.saveStep4 = functions.https.onRequest(async (req, res) => {
   }
 });
 
+/**
+ * This function get the latest step completed by the user and the data till the point.
+ *
+ * @return {functions.Response} - The response includes status code of 200, onboarding step completed,
+ * and the user data.
+ * @return {functions.Response} - If the user with the given unique id does not exists then a response with
+ * message and status code 404 will be sent.
+ * @throws {HttpsError} Throws an error resposne with status 500 and error message if any other error occurs.
+ */
 exports.getLatestStep = functions.https.onRequest(async (req, res) => {
   const { uid } = req.query;
 
