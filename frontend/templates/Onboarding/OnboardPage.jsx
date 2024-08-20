@@ -9,7 +9,7 @@ const OnboardPage = () => {
     return (
       <Box {...styles.welcomeMessageBoxProps}>
         <Typography {...styles.welcomMessageProps}>
-          Welcome to <span style={{ color: '#8653FF' }}>KAI</span> 👋
+          Welcome to <span style={styles.kaiWordProps}>KAI</span> 👋
         </Typography>
         <Typography {...styles.subMessageProps}>
           Let&apos;s get started!

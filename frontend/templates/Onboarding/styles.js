@@ -26,6 +26,9 @@ const styles = {
     fontSize: '20px',
     color: (theme) => theme.palette.text.primary,
   },
+  kaiWordProps: {
+    color: '#8653FF',
+  },
   startButtonProps: {
     variant: 'contained',
     sx: (theme) => ({

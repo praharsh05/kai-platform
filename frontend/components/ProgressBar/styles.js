@@ -7,11 +7,8 @@ const styles = {
     borderColor: 'primary.main',
     sx: {
       background: '#181A20',
+      zIndex: 1300,
     },
-  },
-  progressCheckerBoxProps: {
-    display: 'flex',
-    width: 'auto',
   },
   backdropProps: {
     sx: {
