@@ -39,7 +39,7 @@ This controller includes functions for onboarding process.
 ## uploadProfileImage
 
 1. This function handles the uploading of a profile image for a user to Firebase Storage and updates the corresponding Firestore document with the URL of the uploaded image.
-2. Testing:
+2. Testing: </br>
    Step 1: In Postman, add the "Content-Type" with value "multipart/form-data" in Headers
    <img width="1084" alt="Screenshot 2024-08-21 at 7 35 08 AM" src="https://github.com/user-attachments/assets/18efb65b-2996-4df3-a9a7-0164cf530df9">
    Step 2: In Body, add "file" with type "File" and select a testing image
