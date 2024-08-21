@@ -115,6 +115,16 @@ exports.getLatestStep = functions.https.onRequest(async (req, res) => {
   }
 });
 
+/**
+ * This function handles the uploading of a profile image for a user to Firebase Storage
+ * and updates the corresponding Firestore document with the URL of the uploaded image.
+ *
+ * @return {functions.Response} - The response for success with the image URL and status 200
+ * when the image is uploaded and Firestore is updated.
+ * @throws {HttpsError} - Throws an error response with status 400 if no file is uploaded,
+ * 405 if the request method is not POST, and 500 for any other errors during the upload
+ * or Firestore update process.
+ */
 exports.uploadProfileImage = functions.https.onRequest(async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).send('Method Not Allowed');
