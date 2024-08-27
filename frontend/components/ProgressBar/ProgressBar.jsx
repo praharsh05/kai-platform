@@ -1,24 +1,31 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Backdrop,
   Box,
   Checkbox,
+  Grid,
   IconButton,
   Menu,
   MenuItem,
-} from '@mui/material';
+  Typography,
+} from "@mui/material";
+import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import StepProgressChecker from '../StepProgressChecker';
+import StepProgressChecker from "../StepProgressChecker";
 
-import styles from './styles';
+import styles from "./styles";
 
 const STEPS = [
-  'Welcome',
-  'Profile Setup',
-  'System Configurations',
-  'Final Steps',
+  "Welcome",
+  "Profile Setup",
+  "System Configurations",
+  "Final Steps",
 ];
 
 /**
@@ -27,19 +34,10 @@ const STEPS = [
  * @returns {JSX.Element} The progress bar
  */
 const ProgressBar = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [open, setOpen] = useState(Boolean(anchorEl));
+  const [expanded, setExpanded] = useState(false);
 
-  // Event handler when the dropdown menu is opened
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    setOpen(true);
-  };
-
-  // Event handler when the dropdown menu is closed
-  const handleClose = () => {
-    setAnchorEl(null);
-    setOpen(false);
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
   };
 
   const renderProgressChecker = (index) => {
@@ -48,42 +46,40 @@ const ProgressBar = () => {
     );
   };
 
-  const renderDropdownMenu = () => {
+  const renderProgressBar = () => {
     return (
-      <>
-        <IconButton
-          {...styles.iconButtonProps}
-          id="dropdown-button"
-          aria-controls={open ? 'steps-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
-          onClick={handleClick}
-        >
-          <ArrowDropDownCircleIcon />
-        </IconButton>
-        <Backdrop {...styles.backdropProps} open={open} onClick={handleClose}>
-          <Menu
-            {...styles.menuProps}
-            id="steps-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-          >
-            {STEPS.map((value) => (
-              <MenuItem key={value}>
-                <Checkbox />
-                {value}
-              </MenuItem>
-            ))}
-          </Menu>
-        </Backdrop>
-      </>
+      <Accordion
+        expanded={expanded === 'panel'}
+        onChange={handleChange('panel')}
+        {...styles.accordionProps}
+      >
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Box {...styles.progressContainerProps}>
+            {STEPS.map((step, index) => renderProgressChecker(index))}
+          </Box>
+        </AccordionSummary>
+        <AccordionDetails {...styles.accordionDetailsProps}>
+          {STEPS.map((step, index) => (
+            <Grid key={index} {...styles.accordionItemProps}>
+              <Checkbox
+                icon={<RadioButtonUncheckedIcon />}
+                checkedIcon={<CheckCircleTwoToneIcon />}
+                sx={{ marginTop: '5px' }}
+              />
+              <Typography sx={{ marginTop: '12px' }}>
+                {step}
+              </Typography>
+            </Grid>
+          ))}
+        </AccordionDetails>
+      </Accordion>
     );
   };
 
   return (
     <Box {...styles.mainContainerProps}>
-      {STEPS.map((value, index) => renderProgressChecker(index))}
-      {renderDropdownMenu()}
+      {expanded && <div style={{ ...styles.expandedBgProps }} />}
+      {renderProgressBar()}
     </Box>
   );
 };
