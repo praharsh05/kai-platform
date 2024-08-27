@@ -33,65 +33,77 @@ export default function SystemConfig({ goToNextStep }) {
   };
 
   return (
-    <div>
-      <Typography variant="h2" style={{ marginBottom: '20px' }}>
+    <Grid {...styles.systemConfigContainerProps}>
+      <Typography {...styles.systemConfigHeaderProps}>
         System Configuration
       </Typography>
 
+      <Typography {...styles.systemConfigSubProps}>
+        We need some permissions to get you started
+      </Typography>
+
       <FormGroup>
-        <Grid container spacing={2}>
+        <Grid>
           <Grid item xs={12}>
             <FormControlLabel
+              labelPlacement="start"
+              label={
+                <Typography {...styles.labelProps}>
+                  Enable Email Notifications
+                </Typography>
+              }
               control={
                 <Switch
                   checked={config.emailNotifications}
                   onChange={handleSwitchChange}
                   name="emailNotifications"
                   color="primary"
+                  {...styles.switchProps}
                 />
-              }
-              label={
-                <Typography variant="Body 1">
-                  Enable Email Notifications
-                </Typography>
               }
             />
           </Grid>
 
           <Grid item xs={12}>
             <FormControlLabel
+              labelPlacement="start"
+              label={
+                <Typography {...styles.labelProps}>
+                  Enable Push Notifications
+                </Typography>
+              }
               control={
                 <Switch
                   checked={config.pushNotifications}
                   onChange={handleSwitchChange}
                   name="pushNotifications"
                   color="primary"
+                  {...styles.switchProps}
                 />
-              }
-              label={
-                <Typography variant="Body 1">
-                  Enable Push Notifications
-                </Typography>
               }
             />
           </Grid>
 
           <Grid item xs={12}>
             <FormControlLabel
+              labelPlacement="start"
+              label={
+                <Typography {...styles.labelProps}>Enable Reminders</Typography>
+              }
               control={
                 <Switch
                   checked={config.reminders}
                   onChange={handleSwitchChange}
                   name="reminders"
                   color="primary"
+                  {...styles.switchProps}
                 />
               }
-              label={<Typography variant="Body 1">Enable Reminders</Typography>}
             />
           </Grid>
 
           <Grid item xs={12}>
-            <Typography variant="Body 1" component="label" htmlFor="theme">
+            <Typography {...styles.themeLabelProps} htmlFor="theme">
               Theme Selection
             </Typography>
             <Select
@@ -100,7 +112,7 @@ export default function SystemConfig({ goToNextStep }) {
               value={config.theme}
               onChange={handleThemeChange}
               fullWidth
-              style={{ marginTop: '8px' }}
+              {...styles.selectProps}
             >
               <MenuItem value="light">Light</MenuItem>
               <MenuItem value="dark">Dark</MenuItem>
@@ -109,9 +121,9 @@ export default function SystemConfig({ goToNextStep }) {
         </Grid>
       </FormGroup>
 
-      <button className={styles.nextButton} onClick={handleNext} type="submit">
+      <button {...styles.nextButtonProps} onClick={handleNext} type="submit">
         Next
       </button>
-    </div>
+    </Grid>
   );
 }
