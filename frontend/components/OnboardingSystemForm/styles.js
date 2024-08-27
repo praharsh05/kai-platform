@@ -69,17 +69,12 @@ const styles = {
   nextButtonProps: {
     variant: 'contained',
     sx: (theme) => ({
-      marginTop: '20px',
-      padding: '10px 20px',
-      backgroundColor: theme.palette.primary.main,
-      color: '#fff',
-      fontSize: '16px',
+      marginTop: '7rem',
+      width: '30rem',
+      color: theme.palette.primary,
+      borderRadius: '50px',
       fontWeight: 'bold',
-      borderRadius: '4px',
-      cursor: 'pointer',
-      '&:hover': {
-        backgroundColor: theme.palette.primary.dark,
-      },
+      fontSize: '16px',
     }),
   },
 };

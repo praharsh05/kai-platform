@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import {
+  Button,
   FormControlLabel,
   FormGroup,
   Grid,
@@ -111,7 +112,6 @@ export default function SystemConfig({ goToNextStep }) {
               name="theme"
               value={config.theme}
               onChange={handleThemeChange}
-              fullWidth
               {...styles.selectProps}
             >
               <MenuItem value="light">Light</MenuItem>
@@ -121,9 +121,9 @@ export default function SystemConfig({ goToNextStep }) {
         </Grid>
       </FormGroup>
 
-      <button {...styles.nextButtonProps} onClick={handleNext} type="submit">
-        Next
-      </button>
+      <Button {...styles.nextButtonProps} onClick={handleNext} type="submit">
+        Finish
+      </Button>
     </Grid>
   );
 }
