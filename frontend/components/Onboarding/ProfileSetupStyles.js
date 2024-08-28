@@ -10,13 +10,6 @@ const styles = {
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-  container: {
-    width: '50%',
-    maxWidth: '100vw',
-    margin: '0 auto',
-    textAlign: 'center',
-    marginLeft: 'auto',
-  },
   form: {
     marginTop: 3, // Using theme.spacing(3)
   },
@@ -32,6 +25,7 @@ const styles = {
     marginTop: 3, // Using theme.spacing(3)
   },
   formLabel: {
+    padding: '0 20px 12px 20px',
     color: (theme) => theme.palette.text.primary,
   },
   formTextField: {
@@ -40,6 +34,9 @@ const styles = {
   formProfileCaption: {
     variant: 'Subtitle 2',
     color: 'gray',
+  },
+  socialSection: {
+    padding: '17px 20px 17px 0',
   },
   socialIcons: {
     fontSize: 'large',
