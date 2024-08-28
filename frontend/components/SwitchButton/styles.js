@@ -26,13 +26,14 @@ const styles = {
     borderRadius: '61px',
     border: 'none',
     cursor: 'pointer',
+  },
 
-    switchCircle: {
-      width: '20px',
-      height: '20px',
-      background: '#FFFFFF',
-      flexGrow: 0,
-    },
+  switchCircle: {
+    width: '20px',
+    height: '20px',
+    background: '#FFFFFF',
+    borderRadius: '50%',
+    flexGrow: 0,
   },
 };
 
