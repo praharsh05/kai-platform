@@ -63,12 +63,12 @@ const styles = {
   // }
   mainContainerProps: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '7rem',
+    marginTop: '2rem',
     gap: '10px',
-    maxWidth: '100%',
+    maxWidth: '50%',
     marginLeft: 'auto',
     marginRight: 'auto',
   },
@@ -92,4 +92,16 @@ const styles = {
   submitButtonContainer: {
     marginTop: 3, // Using theme.spacing(3)
   },
+  formLabel: {
+    color: (theme) => theme.palette.text.primary,
+  },
+  formTextField: {
+    borderRadius: '20px',
+  },
+  formProfileCaption: {
+    variant: 'Subtitle 2',
+    color: 'gray',
+  },
 };
+
+export default styles;
