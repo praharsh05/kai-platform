@@ -31,7 +31,7 @@ const styles = {
   switchCircle: {
     width: '20px',
     height: '20px',
-    background: '#FFFFFF',
+    background: '#8065FF',
     borderRadius: '50%',
     flexGrow: 0,
   },

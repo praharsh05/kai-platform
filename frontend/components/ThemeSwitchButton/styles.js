@@ -23,9 +23,6 @@ export const ToggleThumb = styled(Box)(({ isActive }) => ({
 }));
 
 export const ThemeLabel = styled(Typography)(({ isActive }) => ({
-  fontFamily: 'Satoshi',
-  fontStyle: 'normal',
-  fontWeight: 400,
   fontSize: '14px',
   lineHeight: '114.58%',
   display: 'flex',
