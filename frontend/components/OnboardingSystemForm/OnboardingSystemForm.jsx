@@ -5,11 +5,11 @@ import {
   FormControlLabel,
   FormGroup,
   Grid,
-  MenuItem,
-  Select,
   Switch,
   Typography,
 } from '@mui/material';
+
+import ThemeSwitchButton from '../ThemeSwitchButton/ThemeSwitchButton';
 
 import styles from './styles';
 
@@ -23,10 +23,6 @@ export default function SystemConfig({ goToNextStep }) {
 
   const handleSwitchChange = (e) => {
     setConfig({ ...config, [e.target.name]: e.target.checked });
-  };
-
-  const handleThemeChange = (e) => {
-    setConfig({ ...config, theme: e.target.value });
   };
 
   const handleNext = () => {
@@ -107,16 +103,10 @@ export default function SystemConfig({ goToNextStep }) {
             <Typography {...styles.themeLabelProps} htmlFor="theme">
               Theme Selection
             </Typography>
-            <Select
-              id="theme"
-              name="theme"
-              value={config.theme}
-              onChange={handleThemeChange}
-              {...styles.selectProps}
-            >
-              <MenuItem value="light">Light</MenuItem>
-              <MenuItem value="dark">Dark</MenuItem>
-            </Select>
+            <ThemeSwitchButton
+              theme={config.theme}
+              onChange={(newTheme) => setConfig({ ...config, theme: newTheme })}
+            />
           </Grid>
         </Grid>
       </FormGroup>
