@@ -1,96 +1,130 @@
 import { useState } from 'react';
 
-import styles from './ProfileSetup.module.css';
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+} from '@mui/material';
+
+import styles from './ProfileSetupStyles';
 
 export default function ProfileSetupForm({ goToNextStep }) {
-  const [formData, setFormData] = useState({
+  const [profileData, setProfileData] = useState({
     fullName: '',
     occupation: '',
     socialLinks: ['', '', ''],
-    profileImage: null,
     bio: '',
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setProfileData({
+      ...profileData,
+      [name]: value,
+    });
   };
 
   const handleSocialLinkChange = (index, value) => {
-    const newSocialLinks = [...formData.socialLinks];
-    newSocialLinks[index] = value;
-    setFormData({ ...formData, socialLinks: newSocialLinks });
-  };
-
-  const handleFileUpload = (e) => {
-    setFormData({ ...formData, profileImage: e.target.files[0] });
-  };
-
-  const handleNext = () => {
-    // Perform validation if necessary
-    goToNextStep();
+    const updatedLinks = [...profileData.socialLinks];
+    updatedLinks[index] = value;
+    setProfileData({ ...profileData, socialLinks: updatedLinks });
   };
 
   return (
-    <div className={styles.profileSetup}>
-      <h2 className={styles.h2}>Profile Setup</h2>
-      <p>Get started by setting up your profile</p>
+    <Box>
+      {/* <Container>
+        <Typography variant="h5" gutterBottom>
+          Profile Setup
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          Get started by setting up your profile
+        </Typography>
+      </Container>
+      <Box component="form" sx={{ mt: 3, flexGrow: 1 }}>
+        <Grid container spacing={2}>
+          <Grid item size={12}>
+            <Grid item>
+              <TextField
+                fullWidth
+                label="Full Name"
+                name="fullName"
+                value={profileData.fullName}
+                onChange={handleChange}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                fullWidth
+                label="Occupation"
+                name="occupation"
+                value={profileData.occupation}
+                onChange={handleChange}
+                variant="outlined"
+              />
+            </Grid>
+          </Grid>
+          <Grid size={12}>
+            {profileData.socialLinks.map((link, index) => (
+              <Grid item xs={12} m={11} key={index}>
+                <TextField
+                  fullWidth
+                  label={`Social Link ${index + 1}`}
+                  value={link}
+                  onChange={(e) =>
+                    handleSocialLinkChange(index, e.target.value)
+                  }
+                  variant="outlined"
+                />
+              </Grid>
+            ))}
+          </Grid>
 
-      <div className={styles.formGroup}>
-        <input
-          className={styles.input}
-          type="text"
-          name="fullName"
-          placeholder="Enter Name"
-          value={formData.fullName}
-          onChange={handleChange}
-        />
-        <input
-          className={styles.input}
-          type="text"
-          name="occupation"
-          placeholder="Enter Occupation"
-          value={formData.occupation}
-          onChange={handleChange}
-        />
-      </div>
+          <Grid item xs={12} m={12}>
+            <Box
+              sx={{
+                border: '1px dashed gray',
+                padding: 2,
+                borderRadius: 1,
+                textAlign: 'center',
+                cursor: 'pointer',
+              }}
+            >
+              Drag & Drop OR{' '}
+              <Button variant="text" component="span">
+                Upload an Image
+              </Button>
+            </Box>
+          </Grid>
 
-      <div className={styles.socialLinks}>
-        {formData.socialLinks.map((link, index) => (
-          <input
-            className={styles.input}
-            key={index}
-            type="text"
-            placeholder={`Paste Link ${index + 1}`}
-            value={link}
-            onChange={(e) => handleSocialLinkChange(index, e.target.value)}
-          />
-        ))}
-      </div>
+          <Grid item xs={12} m={12}>
+            <TextField
+              fullWidth
+              label="Bio"
+              name="bio"
+              multiline
+              rows={4}
+              value={profileData.bio}
+              onChange={handleChange}
+              variant="outlined"
+            />
+          </Grid>
+        </Grid>
 
-      <div className={styles.profileImage}>
-        <input
-          className={styles.input}
-          type="file"
-          accept=".jpg, .png, .pdf"
-          onChange={handleFileUpload}
-        />
-        <p>Drag & Drop OR Upload an Image</p>
-      </div>
-
-      <textarea
-        className={styles.textarea}
-        name="bio"
-        placeholder="Introduce yourself in a few words"
-        value={formData.bio}
-        onChange={handleChange}
-      />
-
-      <p>Word Limit: 200 Words</p>
-
-      <button className={styles.nextButton} onClick={handleNext} type="submit">
-        Next
-      </button>
-    </div>
+         <Box sx={{ mt: 3 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            // onClick={() => router.push('/profile-setup/system-configurations')}
+          >
+            Next
+          </Button>
+        </Box> 
+      </Box> */}
+    </Box>
   );
 }
