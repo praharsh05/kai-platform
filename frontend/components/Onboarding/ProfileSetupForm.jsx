@@ -1,3 +1,9 @@
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
+
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
+import TwitterIcon from '@mui/icons-material/Twitter';
+
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 
 import styles from './ProfileSetupStyles';
@@ -26,18 +32,48 @@ export default function ProfileSetupForm() {
             />
           </Grid>
         </Grid>
-        <Box sx={{ flexDirection: 'row' }}>
-          <Grid container>
+        <Box sx={{ flexDirection: 'row', flexGrow: 1 }}>
+          <Grid container spacing={2}>
             <Grid item size={12}>
               <Typography {...styles.formLabel}>Social Links</Typography>
               <Grid item size={12}>
-                <TextField fullWidth label="Social Link" variant="outlined" />
+                <Box {...styles.uploadBox}>
+                  <FacebookRoundedIcon
+                    {...styles.socialIcons}
+                    sx={{ color: 'primary.main', mr: 1, my: 0.5 }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="| Paste Link"
+                    variant="standard"
+                  />
+                </Box>
               </Grid>
               <Grid item size={12}>
-                <TextField fullWidth label="Social Link" variant="outlined" />
+                <Box {...styles.uploadBox}>
+                  <LinkedInIcon
+                    {...styles.socialIcons}
+                    sx={{ color: 'primary.main', mr: 1, my: 0.5 }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="| Paste Link"
+                    variant="standard"
+                  />
+                </Box>
               </Grid>
               <Grid item size={12}>
-                <TextField fullWidth label="Social Link" variant="outlined" />
+                <Box {...styles.uploadBox}>
+                  <TwitterIcon
+                    {...styles.socialIcons}
+                    sx={{ color: 'primary.main', mr: 1, my: 0.5 }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="| Paste Link"
+                    variant="standard"
+                  />
+                </Box>
               </Grid>
             </Grid>
           </Grid>
@@ -45,15 +81,7 @@ export default function ProfileSetupForm() {
         <Grid container>
           <Grid item size={12}>
             <Typography {...styles.formLabel}>Profile</Typography>
-            <Box
-              sx={{
-                border: '1px solid gray',
-                padding: 2,
-                borderRadius: '20px',
-                textAlign: 'center',
-                cursor: 'pointer',
-              }}
-            >
+            <Box {...styles.uploadBox}>
               <Typography {...styles.formLabel}>Drag & Drop OR </Typography>
               <Button>Upload an Image</Button>
               <Typography {...styles.formProfileCaption}>
