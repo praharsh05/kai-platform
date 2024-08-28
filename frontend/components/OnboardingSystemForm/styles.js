@@ -64,7 +64,7 @@ const styles = {
   nextButtonProps: {
     variant: 'contained',
     sx: (theme) => ({
-      marginTop: '7rem',
+      marginTop: '3rem',
       width: '30rem',
       color: theme.palette.primary,
       borderRadius: '50px',
