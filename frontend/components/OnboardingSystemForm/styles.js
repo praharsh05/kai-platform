@@ -43,6 +43,13 @@ const styles = {
       color: (theme) => theme.palette.text.primary,
     },
   },
+  RowContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+  },
   themeLabelProps: {
     variant: 'body1',
     component: 'label',
@@ -52,18 +59,6 @@ const styles = {
       color: (theme) => theme.palette.text.primary,
       display: 'block',
       marginBottom: '8px',
-    },
-  },
-  selectProps: {
-    sx: {
-      marginTop: '8px',
-      padding: '8px',
-      borderRadius: '4px',
-      backgroundColor: '#fff',
-      border: '1px solid #ccc',
-      '& .MuiSelect-root': {
-        fontSize: '16px',
-      },
     },
   },
   nextButtonProps: {
@@ -76,6 +71,12 @@ const styles = {
       fontWeight: 'bold',
       fontSize: '16px',
     }),
+  },
+  dividerLine: {
+    width: '592.5px',
+    height: '0px',
+    border: '1px solid #444154',
+    margin: '16px 0',
   },
 };
 
