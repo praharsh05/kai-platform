@@ -10,6 +10,7 @@ import styles from './ProfileSetupStyles';
 
 export default function ProfileSetupForm() {
   const uploadImageText = ' Uplaod an Image';
+  const bioTextSecondary = ' 200 words';
   return (
     <Box {...styles.mainContainerProps}>
       <Box sx={{ flexGrow: 1 }}>
@@ -212,19 +213,34 @@ export default function ProfileSetupForm() {
             <Grid item size={12}>
               <TextField
                 fullWidth
+                multiline
+                rows={2}
                 placeholder="Introduce yourself in a few words"
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     borderRadius: '20px', // Custom border radius
+                  },
+                }}
+                InputProps={{
+                  style: {
+                    width: '613px',
                     height: '97px',
-                    width: '613px', // Custom width
+                    paddingTop: '0.2em',
+                    paddingLeft: '1.5rem',
+                    boxSizing: 'border-box',
+                    lineHeight: '1.5rem',
                   },
                 }}
               />
             </Grid>
-            <Typography {...styles.formProfileCaption}>
-              Word Limit: 200 words
-            </Typography>
+            <Box {...styles.bioTextSection}>
+              <Typography {...styles.bioCaptionPrimary}>
+                Word Limit:
+                <Box component="span" {...styles.bioCaptionSecondary}>
+                  {bioTextSecondary}
+                </Box>
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
       </Box>

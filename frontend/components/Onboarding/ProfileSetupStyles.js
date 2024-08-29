@@ -47,6 +47,20 @@ const styles = {
     fontSize: '18px',
     color: (theme) => theme.palette.primary.main,
   },
+  bioTextSection: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'right',
+    padding: '12px 20px 0 20px',
+  },
+  bioCaptionPrimary: {
+    fontSize: '16px',
+    color: '#444154',
+  },
+  bioCaptionSecondary: {
+    fontSize: '16px',
+    color: (theme) => theme.palette.text.primary,
+  },
 };
 
 export default styles;
