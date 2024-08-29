@@ -10,9 +10,6 @@ const styles = {
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-  form: {
-    marginTop: 3, // Using theme.spacing(3)
-  },
   uploadBox: {
     display: 'flex',
     border: '1px solid gray',
@@ -32,8 +29,8 @@ const styles = {
     borderRadius: '20px',
   },
   formProfileCaption: {
-    variant: 'Subtitle 2',
-    color: 'gray',
+    variant: 'Body 2',
+    color: '#BDBDBD',
   },
   socialSection: {
     padding: '17px 20px 17px 0',
@@ -41,6 +38,14 @@ const styles = {
   socialIcons: {
     fontSize: 'large',
     color: 'primary.main',
+  },
+  uploadTextPrimary: {
+    fontSize: '18px',
+    color: '#BDBDBD',
+  },
+  uploadTextSecondary: {
+    fontSize: '18px',
+    color: (theme) => theme.palette.primary.main,
   },
 };
 

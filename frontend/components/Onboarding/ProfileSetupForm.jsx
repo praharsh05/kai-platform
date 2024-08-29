@@ -9,6 +9,7 @@ import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 import styles from './ProfileSetupStyles';
 
 export default function ProfileSetupForm() {
+  const uploadImageText = ' Uplaod an Image';
   return (
     <Box {...styles.mainContainerProps}>
       <Box sx={{ flexGrow: 1 }}>
@@ -166,30 +167,57 @@ export default function ProfileSetupForm() {
         <Grid container>
           <Grid item size={12}>
             <Typography {...styles.formLabel}>Profile</Typography>
-            <Box {...styles.uploadBox} sx={{ width: '613px' }}>
-              <Grid container>
-                <Grid item size={12}>
-                  <Typography {...styles.formLabel}>Drag & Drop OR </Typography>
-                  <Button>Upload an Image</Button>
+            <Button
+              sx={{
+                width: '613px',
+                height: '96px',
+                border: '1px solid gray',
+                borderRadius: '20px',
+                textTransform: 'none',
+              }}
+            >
+              <Grid
+                container
+                direction="column"
+                alignItems="center"
+                spacing={0}
+              >
+                <Grid item>
+                  <Box display="flex" flexDirection="row" alignItems="center">
+                    <Typography {...styles.uploadTextPrimary}>
+                      Drag & Drop OR
+                      <Box component="span" {...styles.uploadTextSecondary}>
+                        {uploadImageText}
+                      </Box>
+                      <input
+                        type="file"
+                        hidden
+                        // onChange={handleFileChange} // handle file change here
+                      />
+                    </Typography>
+                  </Box>
                 </Grid>
-                <Typography {...styles.formProfileCaption}>
-                  Formats: JPG, PNG, PDF | Upto 1 MB
-                </Typography>
+                <Grid item>
+                  <Typography {...styles.formProfileCaption}>
+                    Formats: JPG, PNG, PDF | Upto 1 MB
+                  </Typography>
+                </Grid>
               </Grid>
-            </Box>
+            </Button>
           </Grid>
         </Grid>
         <Grid container>
-          <Grid item size={12}>
+          <Grid item size={12} sx={{ paddingTop: '12px' }}>
             <Typography {...styles.formLabel}>Bio</Typography>
             <Grid item size={12}>
               <TextField
                 fullWidth
                 placeholder="Introduce yourself in a few words"
                 sx={{
-                  width: '525px', // Custom width
                   '& .MuiOutlinedInput-root': {
                     borderRadius: '20px', // Custom border radius
+                    height: '97px',
+                    width: '613px', // Custom width
                   },
                 }}
               />
