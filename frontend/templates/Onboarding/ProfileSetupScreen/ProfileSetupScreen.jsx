@@ -1,9 +1,8 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
 
 import ProfileSetupForm from '@/components/Onboarding/ProfileSetupForm';
-import ProgressBar from '@/components/ProgressBar';
 
-import OnboardingLayout from '@/layouts/OnboardLayout';
+import ProgressBar from '@/components/ProgressBar';
 
 import styles from './styles';
 
@@ -18,9 +17,9 @@ export default function ProfileSetupScreen({ goToNextStep }) {
         </Typography>
       </Box>
       <ProfileSetupForm goToNextStep={goToNextStep} />
-      {/* <Button {...styles.startButtonProps} onClick={goToNextStep}>
+      <Button {...styles.NextButtonProps} onClick={goToNextStep}>
         Next
-      </Button> */}
+      </Button>
     </Grid>
   );
 }

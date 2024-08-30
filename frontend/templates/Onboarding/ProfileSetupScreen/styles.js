@@ -26,6 +26,19 @@ const styles = {
     variant: 'Body 1',
     color: (theme) => theme.palette.text.primary,
   },
+  NextButtonProps: {
+    variant: 'contained',
+    sx: (theme) => ({
+      marginTop: '2rem',
+      width: '613px',
+      height: '44px',
+      color: theme.palette.primary,
+      borderRadius: '28.89px',
+      fontWeight: '700',
+      textTransform: 'none',
+      fontSize: '18px',
+    }),
+  },
 };
 
 export default styles;
