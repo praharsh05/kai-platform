@@ -18,148 +18,40 @@ export default function ProfileSetupForm() {
           <Grid item size={6}>
             <Typography {...styles.formLabel}>Full Name</Typography>
             <TextField
-              fullWidth
               placeholder="Enter Name"
               name="fullName"
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  borderRadius: '30px', // Custom border radius
-                  height: '52px', // Custom height
-                  width: '294px',
-                },
-              }}
-              {...styles.formTextField}
+              {...styles.textFieldSmall}
             />
           </Grid>
           <Grid item size={6}>
             <Typography {...styles.formLabel}>Occupation</Typography>
             <TextField
-              fullWidth
               placeholder="Enter Occupation"
               name="occupation"
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  borderRadius: '30px', // Custom border radius
-                  height: '52px', // Custom height
-                  width: '294px',
-                },
-              }}
-              {...styles.formTextField}
+              {...styles.textFieldSmall}
             />
           </Grid>
         </Grid>
-        <Box
-          {...styles.socialSection}
-          sx={{ flexDirection: 'row', flexGrow: 1 }}
-        >
+        <Box {...styles.socialSection}>
           <Grid container spacing={2}>
             <Grid item size={12}>
               <Typography {...styles.formLabel}>Social Links</Typography>
-              <Grid
-                item
-                size={12}
-                sx={{
-                  width: '613px', // Custom width
-                  paddingBottom: '12px',
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: '30px', // Custom border radius
-                    height: '52px', // Custom height
-                  },
-                }}
-              >
+              <Grid item size={12} {...styles.socialLinkGrid}>
                 <Box {...styles.uploadBox}>
-                  <FacebookRoundedIcon
-                    {...styles.socialIcons}
-                    sx={{
-                      color: 'primary.main',
-                      mr: 1,
-                      my: 0.5,
-                      width: '24px',
-                      height: '24px',
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    placeholder="| Paste Link"
-                    variant="standard"
-                    sx={{
-                      '& .MuiInput-underline:before': {
-                        borderBottom: 'none', // Remove the default bottom border (underline)
-                      },
-                      '& .MuiInput-underline:after': {
-                        borderBottom: 'none', // Remove the focused bottom border (underline)
-                      },
-                      '& .MuiInputBase-root': {
-                        '&:hover:not(.Mui-disabled):before': {
-                          borderBottom: 'none', // Remove the bottom border on hover
-                        },
-                      },
-                    }}
-                  />
+                  <FacebookRoundedIcon {...styles.socialIcons} />
+                  <TextField {...styles.socialLinkTextField} />
                 </Box>
               </Grid>
               <Grid item size={12} sx={{ paddingBottom: '12px' }}>
                 <Box {...styles.uploadBox}>
-                  <LinkedInIcon
-                    {...styles.socialIcons}
-                    sx={{
-                      color: 'primary.main',
-                      mr: 1,
-                      my: 0.5,
-                      width: '24px',
-                      height: '24px',
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    placeholder="| Paste Link"
-                    variant="standard"
-                    sx={{
-                      '& .MuiInput-underline:before': {
-                        borderBottom: 'none', // Remove the default bottom border (underline)
-                      },
-                      '& .MuiInput-underline:after': {
-                        borderBottom: 'none', // Remove the focused bottom border (underline)
-                      },
-                      '& .MuiInputBase-root': {
-                        '&:hover:not(.Mui-disabled):before': {
-                          borderBottom: 'none', // Remove the bottom border on hover
-                        },
-                      },
-                    }}
-                  />
+                  <LinkedInIcon {...styles.socialIcons} />
+                  <TextField {...styles.socialLinkTextField} />
                 </Box>
               </Grid>
               <Grid item size={12}>
                 <Box {...styles.uploadBox}>
-                  <TwitterIcon
-                    {...styles.socialIcons}
-                    sx={{
-                      color: 'primary.main',
-                      mr: 1,
-                      my: 0.5,
-                      width: '24px',
-                      height: '24px',
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    placeholder="| Paste Link"
-                    variant="standard"
-                    sx={{
-                      '& .MuiInput-underline:before': {
-                        borderBottom: 'none', // Remove the default bottom border (underline)
-                      },
-                      '& .MuiInput-underline:after': {
-                        borderBottom: 'none', // Remove the focused bottom border (underline)
-                      },
-                      '& .MuiInputBase-root': {
-                        '&:hover:not(.Mui-disabled):before': {
-                          borderBottom: 'none', // Remove the bottom border on hover
-                        },
-                      },
-                    }}
-                  />
+                  <TwitterIcon {...styles.socialIcons} />
+                  <TextField {...styles.socialLinkTextField} />
                 </Box>
               </Grid>
             </Grid>
@@ -168,15 +60,7 @@ export default function ProfileSetupForm() {
         <Grid container>
           <Grid item size={12}>
             <Typography {...styles.formLabel}>Profile</Typography>
-            <Button
-              sx={{
-                width: '613px',
-                height: '96px',
-                border: '1px solid gray',
-                borderRadius: '20px',
-                textTransform: 'none',
-              }}
-            >
+            <Button {...styles.profileUploadButton}>
               <Grid
                 container
                 direction="column"
@@ -212,25 +96,8 @@ export default function ProfileSetupForm() {
             <Typography {...styles.formLabel}>Bio</Typography>
             <Grid item size={12}>
               <TextField
-                fullWidth
-                multiline
-                rows={2}
                 placeholder="Introduce yourself in a few words"
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: '20px', // Custom border radius
-                  },
-                }}
-                InputProps={{
-                  style: {
-                    width: '613px',
-                    height: '97px',
-                    paddingTop: '0.2em',
-                    paddingLeft: '1.5rem',
-                    boxSizing: 'border-box',
-                    lineHeight: '1.5rem',
-                  },
-                }}
+                {...styles.bioTextField}
               />
             </Grid>
             <Box {...styles.bioTextSection}>

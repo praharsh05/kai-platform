@@ -10,6 +10,17 @@ const styles = {
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+  textFieldSmall: {
+    fullWidth: 'True',
+    borderRadius: '20px',
+    sx: {
+      '& .MuiOutlinedInput-root': {
+        borderRadius: '30px', // Custom border radius
+        height: '52px', // Custom height
+        width: '294px',
+      },
+    },
+  },
   uploadBox: {
     display: 'flex',
     border: '1px solid gray',
@@ -18,15 +29,9 @@ const styles = {
     textAlign: 'center',
     cursor: 'pointer',
   },
-  submitButtonContainer: {
-    marginTop: 3, // Using theme.spacing(3)
-  },
   formLabel: {
     padding: '0 20px 12px 20px',
     color: (theme) => theme.palette.text.primary,
-  },
-  formTextField: {
-    borderRadius: '20px',
   },
   formProfileCaption: {
     variant: 'Body 2',
@@ -34,10 +39,54 @@ const styles = {
   },
   socialSection: {
     padding: '17px 20px 17px 0',
+    sx: {
+      flexDirection: 'row',
+      flexGrow: 1,
+    },
+  },
+  socialLinkGrid: {
+    sx: {
+      width: '613px', // Custom width
+      paddingBottom: '12px',
+    },
   },
   socialIcons: {
     fontSize: 'large',
     color: 'primary.main',
+    sx: {
+      color: 'primary.main',
+      mr: 1,
+      my: 0.5,
+      width: '24px',
+      height: '24px',
+    },
+  },
+  socialLinkTextField: {
+    fullWidth: 'True',
+    placeholder: '| Paste Link',
+    variant: 'standard',
+    sx: {
+      '& .MuiInput-underline:before': {
+        borderBottom: 'none', // Remove the default bottom border (underline)
+      },
+      '& .MuiInput-underline:after': {
+        borderBottom: 'none', // Remove the focused bottom border (underline)
+      },
+      '& .MuiInputBase-root': {
+        '&:hover:not(.Mui-disabled):before': {
+          borderBottom: 'none', // Remove the bottom border on hover
+        },
+      },
+    },
+  },
+  profileUploadButton: {
+    sx: {
+      width: '613px',
+      height: '96px',
+      border: '1px solid gray',
+      borderRadius: '20px',
+      textTransform: 'none',
+    },
   },
   uploadTextPrimary: {
     fontSize: '18px',
@@ -46,6 +95,26 @@ const styles = {
   uploadTextSecondary: {
     fontSize: '18px',
     color: (theme) => theme.palette.primary.main,
+  },
+  bioTextField: {
+    fullWidth: 'True',
+    multiline: 'True',
+    rows: '2',
+    sx: {
+      '& .MuiOutlinedInput-root': {
+        borderRadius: '20px', // Custom border radius
+      },
+    },
+    InputProps: {
+      style: {
+        width: '613px',
+        height: '97px',
+        paddingTop: '0.2em',
+        paddingLeft: '1.5rem',
+        boxSizing: 'border-box',
+        lineHeight: '1.5rem',
+      },
+    },
   },
   bioTextSection: {
     display: 'flex',
