@@ -11,7 +11,7 @@ const styles = {
     marginRight: 'auto',
   },
   textFieldSmall: {
-    fullWidth: 'True',
+    fullWidth: true,
     borderRadius: '20px',
     sx: {
       '& .MuiOutlinedInput-root': {
@@ -62,7 +62,7 @@ const styles = {
     },
   },
   socialLinkTextField: {
-    fullWidth: 'True',
+    fullWidth: true,
     placeholder: '| Paste Link',
     variant: 'standard',
     sx: {
@@ -97,8 +97,8 @@ const styles = {
     color: (theme) => theme.palette.primary.main,
   },
   bioTextField: {
-    fullWidth: 'True',
-    multiline: 'True',
+    fullWidth: true,
+    multiline: true,
     rows: '2',
     sx: {
       '& .MuiOutlinedInput-root': {
