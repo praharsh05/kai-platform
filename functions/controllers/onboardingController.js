@@ -42,36 +42,46 @@ exports.saveStep1 = functions.https.onRequest(async (req, res) => {
  * if firestore cannot be updated.
  */
 exports.saveStep2 = functions.https.onRequest(async (req, res) => {
-  const {
-    uid,
-    fullName,
-    occupation,
-    facebookUrl,
-    linkedInUrl,
-    xUrl,
-    profileImage,
-    bio,
-  } = req.body;
+  const busboy = busboy1({ headers: req.headers });
+  const fields = {};
 
-  try {
-    await admin.firestore().collection('Users').doc(uid).set(
-      {
-        fullName,
-        occupation,
-        facebookUrl,
-        linkedInUrl,
-        xUrl,
-        profileImage,
-        bio,
-        onboardingStepCompleted: 2,
-      },
-      { merge: true }
-    );
+  busboy.on('field', (fieldname, val) => {
+    fields[fieldname] = val;
+  });
 
-    res.status(200).send({ success: true });
-  } catch (error) {
-    res.status(500).send({ success: false, error: error.message });
-  }
+  busboy.on('finish', async () => {
+    const {
+      uid,
+      fullName,
+      occupation,
+      facebookUrl,
+      linkedInUrl,
+      xUrl,
+      bio,
+      profileImage,
+    } = fields;
+
+    try {
+      await admin.firestore().collection('Users').doc(uid).set(
+        {
+          fullName,
+          occupation,
+          facebookUrl,
+          linkedInUrl,
+          xUrl,
+          profileImage,
+          bio,
+          onboardingStepCompleted: 2,
+        },
+        { merge: true }
+      );
+
+      res.status(200).send({ success: true });
+    } catch (error) {
+      res.status(500).send({ success: false, error: error.message });
+    }
+  });
+  busboy.end(req.rawBody);
 });
 
 /**
