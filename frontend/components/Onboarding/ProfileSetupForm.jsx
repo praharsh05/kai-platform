@@ -1,3 +1,5 @@
+import React from 'react';
+
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -8,7 +10,21 @@ import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 
 import styles from './ProfileSetupStyles';
 
-export default function ProfileSetupForm() {
+const ProfileSetupForm = ({ formData, handleChange, setStep2Data }) => {
+  // const [profileImage, setProfileImage] = useState(null);
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    // setProfileImage(file);
+    setStep2Data({ ...formData, profileImage: file });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setStep2Data({ ...formData, [name]: value });
+    handleChange(e);
+  };
+
   const uploadImageText = ' Uplaod an Image';
   const bioTextSecondary = ' 200 words';
   return (
@@ -20,6 +36,8 @@ export default function ProfileSetupForm() {
             <TextField
               placeholder="Enter Name"
               name="fullName"
+              value={formData.fullName}
+              onChange={handleInputChange}
               {...styles.textFieldSmall}
             />
           </Grid>
@@ -28,6 +46,8 @@ export default function ProfileSetupForm() {
             <TextField
               placeholder="Enter Occupation"
               name="occupation"
+              value={formData.occupation}
+              onChange={handleInputChange}
               {...styles.textFieldSmall}
             />
           </Grid>
@@ -39,19 +59,34 @@ export default function ProfileSetupForm() {
               <Grid item size={12} {...styles.socialLinkGrid}>
                 <Box {...styles.uploadBox}>
                   <FacebookRoundedIcon {...styles.socialIcons} />
-                  <TextField {...styles.socialLinkTextField} />
+                  <TextField
+                    {...styles.socialLinkTextField}
+                    name="facebookUrl"
+                    value={formData.facebookUrl}
+                    onChange={handleInputChange}
+                  />
                 </Box>
               </Grid>
               <Grid item size={12} sx={{ paddingBottom: '12px' }}>
                 <Box {...styles.uploadBox}>
                   <LinkedInIcon {...styles.socialIcons} />
-                  <TextField {...styles.socialLinkTextField} />
+                  <TextField
+                    {...styles.socialLinkTextField}
+                    name="linkedInUrl"
+                    value={formData.linkedInUrl}
+                    onChange={handleInputChange}
+                  />
                 </Box>
               </Grid>
               <Grid item size={12}>
                 <Box {...styles.uploadBox}>
                   <TwitterIcon {...styles.socialIcons} />
-                  <TextField {...styles.socialLinkTextField} />
+                  <TextField
+                    {...styles.socialLinkTextField}
+                    name="xUrl"
+                    value={formData.xUrl}
+                    onChange={handleInputChange}
+                  />
                 </Box>
               </Grid>
             </Grid>
@@ -76,8 +111,8 @@ export default function ProfileSetupForm() {
                       </Box>
                       <input
                         type="file"
-                        hidden
-                        // onChange={handleFileChange} // handle file change here
+                        // hidden
+                        onChange={handleImageUpload} // handle file change here
                       />
                     </Typography>
                   </Box>
@@ -97,6 +132,9 @@ export default function ProfileSetupForm() {
             <Grid item size={12}>
               <TextField
                 placeholder="Introduce yourself in a few words"
+                value={formData.bio}
+                name="bio"
+                onChange={handleInputChange}
                 {...styles.bioTextField}
               />
             </Grid>
@@ -113,4 +151,6 @@ export default function ProfileSetupForm() {
       </Box>
     </Box>
   );
-}
+};
+
+export default ProfileSetupForm;
