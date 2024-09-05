@@ -6,6 +6,10 @@ const busboy1 = require('busboy');
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
+const cors = require('cors');
+
+// Initialize CORS with a specific origin (you can adjust this as needed)
+const corsHandler = cors({ origin: true }); // Allow all origins for testing
 
 /**
  * This function saves the step 1 of the onboarding process by adding the field of
@@ -62,7 +66,7 @@ exports.saveStep2 = functions.https.onRequest(async (req, res) => {
     } = fields;
 
     try {
-      await admin.firestore().collection('Users').doc(uid).set(
+      await admin.firestore().collection('users').doc(uid).set(
         {
           fullName,
           occupation,
@@ -178,40 +182,37 @@ exports.getLatestStep = functions.https.onRequest(async (req, res) => {
  * or Firestore update process.
  */
 exports.uploadProfileImage = functions.https.onRequest(async (req, res) => {
-  if (req.method !== 'POST') {
-    return res.status(405).send('Method Not Allowed');
-  }
-  const busboy = busboy1({ headers: req.headers });
-  const tmpdir = os.tmpdir();
-  const uid = req.query.uid;
-  let uploadData = null;
-  busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
-    const filepath = path.join(tmpdir, filename.toString());
-    uploadData = { file: filepath, type: mimetype };
-    file.pipe(fs.createWriteStream(filepath));
-  });
-  busboy.on('finish', async () => {
-    if (!uploadData) {
-      return res.status(400).send('No file uploaded');
+  // Use the CORS middleware
+  return corsHandler(req, res, async () => {
+    if (req.method !== 'POST') {
+      return res.status(405).send('Method Not Allowed');
     }
-    const bucket = admin.storage().bucket();
-    const storageFilePath = `profileImages/${uid}/${path.basename(uploadData.file)}`;
-    await bucket.upload(uploadData.file, {
-      destination: storageFilePath,
-      metadata: {
-        contentType: uploadData.type,
-      },
+    const busboy = busboy1({ headers: req.headers });
+    const tmpdir = os.tmpdir();
+    const uid = req.query.uid;
+    let uploadData = null;
+    busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
+      const filepath = path.join(tmpdir, filename.toString());
+      uploadData = { file: filepath, type: mimetype };
+      file.pipe(fs.createWriteStream(filepath));
     });
+    busboy.on('finish', async () => {
+      if (!uploadData) {
+        return res.status(400).send('No file uploaded');
+      }
+      const bucket = admin.storage().bucket();
+      const storageFilePath = `profileImages/${uid}/${path.basename(uploadData.file)}`;
+      await bucket.upload(uploadData.file, {
+        destination: storageFilePath,
+        metadata: {
+          contentType: uploadData.type,
+        },
+      });
 
-    fs.unlinkSync(uploadData.file);
-    const fileUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(storageFilePath)}?alt=media`;
-    await admin.firestore().collection('Users').doc(uid).set(
-      {
-        profileImage: fileUrl,
-      },
-      { merge: true }
-    );
-    return res.status(200).json({ fileUrl });
+      fs.unlinkSync(uploadData.file);
+      const fileUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(storageFilePath)}?alt=media`;
+      return res.status(200).json({ fileUrl });
+    });
+    busboy.end(req.rawBody);
   });
-  busboy.end(req.rawBody);
 });
