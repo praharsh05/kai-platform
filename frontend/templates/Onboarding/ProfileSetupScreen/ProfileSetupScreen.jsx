@@ -25,6 +25,7 @@ export default function ProfileSetupScreen() {
     profileImage: '', // Holds the image file
   });
   const [uid, setUid] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -37,48 +38,58 @@ export default function ProfileSetupScreen() {
 
     return () => unsubscribe(); // Clean up subscription on unmount
   }, []);
+
   const handleSubmit = async () => {
-    const formData = new FormData();
-    let profileImageUrl = '';
-    console.log('uid before submission: ', uid);
-    formData.append('uid', uid);
-    if (step2Data.profileImage) {
-      formData.append('profileImage', step2Data.profileImage);
-      console.log(formData);
-      try {
-        // First API call: upload the profile image
+    setIsSubmitting(true); // Indicate the form is submitting
+    try {
+      let profileImageUrl = '';
+
+      // Upload profile image if it exists
+      if (step2Data.profileImage) {
+        const formData = new FormData();
+        formData.append('profileImage', step2Data.profileImage); // Image file
         const uploadResponse = await axios.post(
-          `/api/uploadProfileImage?uid=${uid}`,
+          `http://127.0.0.1:5001/kai-onboarding-e68ed/us-central1/uploadProfileImage?uid=${uid}`,
           formData,
           {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
+            headers: { 'Content-Type': 'multipart/form-data' },
           }
         );
 
-        profileImageUrl = uploadResponse.data;
-      } catch (error) {
-        console.error('Error uploading profile image:', error);
+        profileImageUrl = uploadResponse.data.fileUrl; // Get the URL from response
+        // console.log('Profile Image URL:', profileImageUrl.data.fileUrl);
       }
-    }
-    // Now, send the form data along with the profileImageUrl
-    const data = {
-      uid,
-      fullName: step2Data.fullName,
-      occupation: step2Data.occupation,
-      facebookUrl: step2Data.facebookUrl,
-      linkedInUrl: step2Data.linkedInUrl,
-      xUrl: step2Data.xUrl,
-      bio: step2Data.bio,
-      profileImageUrl, // Include the image URL received from the first API call
-    };
-    console.log(data);
-    try {
-      await axios.post('/api/saveStep2', data);
-      // Implement the logic for moving to the next step here
+
+      // Now send the form data along with the image URL to another endpoint
+      const userProfileData = {
+        uid,
+        fullName: step2Data.fullName,
+        occupation: step2Data.occupation,
+        facebookUrl: step2Data.facebookUrl,
+        linkedInUrl: step2Data.linkedInUrl,
+        xUrl: step2Data.xUrl,
+        bio: step2Data.bio,
+        profileImage: profileImageUrl, // Include the image URL if it exists
+      };
+
+      // Send the user profile data to another API (e.g., saveStep2)
+      await axios.post('/api/saveStep2', userProfileData);
+
+      // Implement your logic to proceed to the next step here
     } catch (error) {
-      console.error('Error uploading step 2 data:', error);
+      console.error('Error during submission for step 2:', error);
+    } finally {
+      setIsSubmitting(false); // Reset submitting state
+    }
+  };
+
+  // Handle form field changes
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === 'profileImage' && files.length > 0) {
+      setStep2Data({ ...step2Data, profileImage: files[0] });
+    } else {
+      setStep2Data({ ...step2Data, [name]: value });
     }
   };
   return (
@@ -93,7 +104,7 @@ export default function ProfileSetupScreen() {
       <ProfileSetupForm
         formData={step2Data}
         setStep2Data={setStep2Data}
-        handleChange={() => {}}
+        handleChange={handleChange}
       />
       <Button {...styles.NextButtonProps} onClick={handleSubmit}>
         Next
