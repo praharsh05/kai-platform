@@ -23,8 +23,6 @@ export default async function handler(req, res) {
   };
 
   try {
-    // console.log('Posting request for step 2');
-    // console.log(data);
     const response = await axios.post(
       'http://127.0.0.1:5001/kai-onboarding-e68ed/us-central1/onboardingStep2',
       data,
@@ -35,7 +33,6 @@ export default async function handler(req, res) {
 
     res.status(200).json({ success: true, data: response.data });
   } catch (error) {
-    console.log('some error');
     res.status(500).json({ success: false, error: error.message });
   }
 }
