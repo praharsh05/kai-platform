@@ -1,49 +1,31 @@
-import { useState } from "react";
+import { useState } from 'react';
 
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Backdrop,
   Box,
-  Checkbox,
   Grid,
-  IconButton,
-  Menu,
-  MenuItem,
   Typography,
-} from "@mui/material";
-import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
-import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+} from '@mui/material';
 
-import StepProgressChecker from "../StepProgressChecker";
+import CustomCheckIcon from '../CustomCheckIcon';
+import ProgressStepper from '../ProgressStepper';
 
-import styles from "./styles";
-
-const STEPS = [
-  "Welcome",
-  "Profile Setup",
-  "System Configurations",
-  "Final Steps",
-];
+import styles from './styles';
 
 /**
  * Generate a progress bar that includes each step progress checker and a dropdown menu
  *
  * @returns {JSX.Element} The progress bar
  */
-const ProgressBar = () => {
+const ProgressBar = (props) => {
+  const { steps, current, progress } = props;
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
-  };
-
-  const renderProgressChecker = (index) => {
-    return (
-      <StepProgressChecker key={index} isFinal={index === STEPS.length - 1} />
-    );
   };
 
   const renderProgressBar = () => {
@@ -55,20 +37,21 @@ const ProgressBar = () => {
       >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Box {...styles.progressContainerProps}>
-            {STEPS.map((step, index) => renderProgressChecker(index))}
+            <ProgressStepper
+              steps={steps}
+              current={current}
+              progress={progress}
+            />
           </Box>
         </AccordionSummary>
         <AccordionDetails {...styles.accordionDetailsProps}>
-          {STEPS.map((step, index) => (
+          {steps.map((step, index) => (
             <Grid key={index} {...styles.accordionItemProps}>
-              <Checkbox
-                icon={<RadioButtonUncheckedIcon />}
-                checkedIcon={<CheckCircleTwoToneIcon />}
-                sx={{ marginTop: '5px' }}
+              <CustomCheckIcon
+                checked={index < current}
+                {...styles.customCheckIconProps}
               />
-              <Typography sx={{ marginTop: '12px' }}>
-                {step}
-              </Typography>
+              <Typography {...styles.stepLabelProps}>{step}</Typography>
             </Grid>
           ))}
         </AccordionDetails>

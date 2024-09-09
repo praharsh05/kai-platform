@@ -7,12 +7,10 @@ const styles = {
     variant: 'determinate',
     value: 0,
     sx: {
-      marginTop: '19px',
-      width: '100px',
+      marginTop: '18px',
+      width: '120px',
+      height: '6px',
     },
-  },
-  checkboxProps: {
-    disabled: true,
   },
 };
 

@@ -1,6 +1,6 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
 
-import styles from "./styles";
+import styles from './styles';
 
 const WelcomePage = () => {
   return (

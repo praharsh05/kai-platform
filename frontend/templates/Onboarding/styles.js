@@ -3,6 +3,7 @@ const styles = {
     container: true,
     item: true,
     display: 'flex',
+    position: 'relative',
     paddingTop: '6rem',
     width: '100%',
     flexDirection: 'column',
@@ -12,12 +13,13 @@ const styles = {
   startButtonProps: {
     variant: 'contained',
     sx: (theme) => ({
-      marginTop: '7rem',
+      marginTop: '2rem',
       width: '20rem',
       color: theme.palette.primary,
       borderRadius: '50px',
       fontWeight: 'bold',
       fontSize: '15px',
+      zIndex: 1,
     }),
   },
 };

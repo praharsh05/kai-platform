@@ -2,17 +2,22 @@ const styles = {
   mainContainerProps: {
     display: 'flex',
     width: 'auto',
-    zIndex: 1001,
+    position: 'fixed',
+    top: 0,
+    paddingTop: '3rem',
+    zIndex: 1300,
   },
   accordionProps: {
     square: false,
     disableGutters: true,
     sx: {
+      minWidth: '590px',
+      maxWidth: '590px',
       border: '1.5px solid',
-      borderRadius: '30px !important',
+      borderRadius: '20px !important',
       borderColor: 'primary.main',
       background: '#181A20',
-    }
+    },
   },
   accordionDetailsProps: {
     sx: {
@@ -33,6 +38,7 @@ const styles = {
   progressContainerProps: {
     display: 'flex',
     width: 'auto',
+    marginRight: '1rem',
   },
   expandedBgProps: {
     position: 'fixed',
@@ -43,28 +49,13 @@ const styles = {
     background: 'rgba(0, 0, 0, 0.5)',
     backdropFilter: 'blur(15px)',
   },
-  iconButtonProps: {
+  customCheckIconProps: {
     sx: {
-      marginLeft: '1rem',
+      marginTop: '7px',
     },
   },
-  menuProps: {
-    anchorOrigin: {
-      vertical: 'bottom',
-      horizontal: 'right',
-    },
-    transformOrigin: {
-      vertical: 'top',
-      horizontal: 'right',
-    },
-    marginThreshold: 0,
-    slotProps: {
-      paper: {
-        sx: {
-          width: '525px',
-        },
-      },
-    },
+  stepLabelProps: {
+    marginTop: '12px',
   },
 };
 
