@@ -67,7 +67,7 @@ const useRedirect = (firestore, functions, handleOpenSnackBar) => {
       }
     }
 
-    // if (!isAuthRoute && !loading) router.push(ROUTES.SIGNIN);
+    if (!isAuthRoute && !loading) router.push(ROUTES.SIGNIN);
   }, [authData]);
 
   useEffect(() => {
