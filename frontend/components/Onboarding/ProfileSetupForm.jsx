@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react'; // Import useRef to handle file input ref
 
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 
@@ -11,12 +11,19 @@ import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 import styles from './ProfileSetupStyles';
 
 const ProfileSetupForm = ({ formData, handleChange, setStep2Data }) => {
-  // const [profileImage, setProfileImage] = useState(null);
+  const fileInputRef = useRef(null); // Create a ref for the file input
 
+  // Function to handle file input changes
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
-    // setProfileImage(file);
     setStep2Data({ ...formData, profileImage: file });
+  };
+
+  // Function to trigger file input click
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click(); // Trigger the file input click
+    }
   };
 
   const handleInputChange = (e) => {
@@ -25,7 +32,7 @@ const ProfileSetupForm = ({ formData, handleChange, setStep2Data }) => {
     handleChange(e);
   };
 
-  const uploadImageText = ' Uplaod an Image';
+  const uploadImageText = ' Upload an Image';
   const bioTextSecondary = ' 200 words';
   return (
     <Box {...styles.mainContainerProps}>
@@ -95,7 +102,10 @@ const ProfileSetupForm = ({ formData, handleChange, setStep2Data }) => {
         <Grid container>
           <Grid item size={12}>
             <Typography {...styles.formLabel}>Profile</Typography>
-            <Button {...styles.profileUploadButton}>
+            <Button
+              {...styles.profileUploadButton}
+              onClick={handleButtonClick} // Add click handler to trigger file input
+            >
               <Grid
                 container
                 direction="column"
@@ -111,8 +121,9 @@ const ProfileSetupForm = ({ formData, handleChange, setStep2Data }) => {
                       </Box>
                       <input
                         type="file"
-                        // hidden
-                        onChange={handleImageUpload} // handle file change here
+                        ref={fileInputRef} // Attach ref to the file input
+                        onChange={handleImageUpload} // Handle file change
+                        style={{ display: 'none' }} // Hide the input element
                       />
                     </Typography>
                   </Box>
