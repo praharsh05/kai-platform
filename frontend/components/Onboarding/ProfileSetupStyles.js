@@ -28,6 +28,12 @@ const styles = {
     borderRadius: 6, // Using theme.shape.borderRadius
     textAlign: 'center',
     cursor: 'pointer',
+    // Hover effect
+    sx: {
+      '&:hover': {
+        border: '1px solid white', // Change border color to white on hover
+      },
+    },
   },
   formLabel: {
     padding: '0 20px 12px 20px',
