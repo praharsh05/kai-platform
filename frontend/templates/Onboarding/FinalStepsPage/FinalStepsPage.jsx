@@ -5,7 +5,7 @@ import CustomCheckIcon from '@/components/CustomCheckIcon';
 import styles from './styles';
 
 const FinalStepsPage = (props) => {
-  const { steps } = props;
+  const { steps, current } = props;
 
   const renderHeaderMessage = () => {
     return (
@@ -23,7 +23,7 @@ const FinalStepsPage = (props) => {
       <Grid {...styles.stepsContainerProps}>
         {steps.map((step, index) => (
           <Grid key={index} {...styles.stepItemProps}>
-            <CustomCheckIcon />
+            <CustomCheckIcon checked={index < current} />
             <Typography {...styles.stepLabelProps}>{step}</Typography>
           </Grid>
         ))}

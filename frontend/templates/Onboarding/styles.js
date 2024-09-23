@@ -1,3 +1,5 @@
+const current = 0;
+
 const styles = {
   mainGridProps: {
     container: true,
@@ -14,11 +16,13 @@ const styles = {
     variant: 'contained',
     sx: (theme) => ({
       marginTop: '2rem',
-      width: '20rem',
+      width: current === 0 ? '330px' : '590px',
+      height: '45px',
       color: theme.palette.primary,
       borderRadius: '50px',
       fontWeight: 'bold',
-      fontSize: '15px',
+      fontSize: '18px',
+      textTransform: 'none',
       zIndex: 1,
     }),
   },
